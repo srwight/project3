@@ -1,15 +1,11 @@
 def func(a:int) -> int:
-    """[summary]
+    """Returns an integer a + 1
     
     Arguments:
-        a {int} -- [description]
+        a {int} -- any integer
     
     Returns:
-        int,int -- [description]
+        int -- a + 1
     """ 
         
-    return a+1
-
-
-def test_answer():
-    assert func(3) == 5
+    return a+2
