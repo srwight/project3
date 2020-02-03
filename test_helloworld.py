@@ -1,4 +1,4 @@
 import helloworld
 
 def test_answer():
-    assert helloworld.func(3) == 4
+    assert helloworld.func(3) == 5
