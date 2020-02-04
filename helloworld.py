@@ -1,11 +1,16 @@
-def func(a:int) -> int:
-    """Returns an integer a + 2
-    
+'''
+This is the module docstring
+'''
+
+
+def func(my_int: int) -> int:
+    '''Returns an integer a + 2
+
     Arguments:
-        a {int} -- any integer
-    
+        my_int {int} -- any integer
+
     Returns:
         int -- a + 2
-    """ 
-        
-    return a+2
+    '''
+
+    return my_int+2
