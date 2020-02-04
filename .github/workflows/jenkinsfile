@@ -11,7 +11,8 @@ pipeline {
         }
         stage('test') {
             steps {
-                sh 'python -m pytest --verbose --junit-xml test-reports/results.xml'
+                withEnv(["HOME=$env.WORKSPACE"])
+                    sh 'python -m pytest --verbose --junit-xml test-reports/results.xml'
             }
         }
     }
