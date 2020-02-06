@@ -11,8 +11,17 @@ pipeline {
         stage('test') {
             steps {
                 withEnv(["HOME=$env.WORKSPACE"]){
-                    sh 'python -m pytest --verbose --junit-xml test-reports/results.xml'
-                    sh 'python -m pylint --verbose -f json *.py'
+                    sh 'nosetests --with-xunit --xunit-file=coverage.xml --all-modules --traverse-namespace --with-coverage'
+                    sh 'pylint -f parseable helloworld.py | tee pylint.out'
+                    // sh 'python -m pytest --verbose --junit-xml test-reports/results.xml'
+                    // sh 'python -m pylint --verbose -f json *.py'
+                }
+            }
+        }
+        stage('post-build') {
+            steps {
+                cobertura:Publish Coburtura Coverage Report{
+                    coberturaReportFile:'coverage.xml'
                 }
             }
         }
