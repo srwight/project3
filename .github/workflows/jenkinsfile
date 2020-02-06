@@ -13,7 +13,7 @@ pipeline {
                 withEnv(["HOME=$env.WORKSPACE"]){
                     // sh 'nosetests --with-xunit --xunit-file=coverage.xml --all-modules --traverse-namespace --with-coverage'
                     sh 'pylint -f parseable helloworld.py | tee pylint.out'
-                    sh 'python -m pytest --verbose --junit-xml test-reports/results.xml'
+                    sh 'python -m pytest --verbose --junit-xml coverage.xml'
                     // sh 'python -m pylint --verbose -f json *.py'
                 }
             }
@@ -22,7 +22,7 @@ pipeline {
     post {
             always {
                 junit '**/nosetests.xml'
-                step([$class: 'CoberturaPublisher', autoUpdateHealth: false, autoUpdateStability: false, coberturaReportFile: '**/test-reports/results.xml', failUnhealthy: false, failUnstable: false, maxNumberOfBuilds: 0, onlyStable: false, sourceEncoding: 'ASCII', zoomCoverageChart: false])
+                step([$class: 'CoberturaPublisher', autoUpdateHealth: false, autoUpdateStability: false, coberturaReportFile: '**/coverage.xml', failUnhealthy: false, failUnstable: false, maxNumberOfBuilds: 0, onlyStable: false, sourceEncoding: 'ASCII', zoomCoverageChart: false])
             }
     }
 }
