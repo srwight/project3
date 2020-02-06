@@ -19,7 +19,10 @@ pipeline {
             }
         }
         stage('Extract Test Results') {
-            cobertura coberturaReportFile: '**/coverage.xml'
+            steps {
+                cobertura coberturaReportFile: '**/coverage.xml'
+
+            }
         }
     }
     // post {
