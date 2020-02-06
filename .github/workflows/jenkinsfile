@@ -4,7 +4,7 @@ pipeline {
         stage('build') {
             steps {
                 withEnv(["HOME=$env.WORKSPACE"]){
-                    sh 'pip install -r requirements.txt'
+                    sh 'pip install --user -r requirements.txt'
                 }
             }
         }
@@ -22,6 +22,7 @@ pipeline {
             always {
                 junit 'test-results/results.xml'
                 step([$class: 'CoberturaPublisher', autoUpdateHealth: false, autoUpdateStability: false, coberturaReportFile: 'coverage.xml', failUnhealthy: false, failUnstable: false, maxNumberOfBuilds: 0, onlyStable: false, sourceEncoding: 'ASCII', zoomCoverageChart: false])
+                sh 'pip uninstall --user -r requirements.txt'
             }
     }
 }
