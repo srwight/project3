@@ -20,7 +20,7 @@ pipeline {
         }
         stage('post-build') {
             steps {
-                cobertura:Publish Coburtura Coverage Report{
+                cobertura:PublishCoburturaCoverageReport{
                     coberturaReportFile:'coverage.xml'
                 }
             }
