@@ -3,7 +3,7 @@ This is the testing module for helloworld.py
 '''
 import helloworld
 
-def test_answer():
+def test_func():
     '''
     test for helloworld.py
     '''
